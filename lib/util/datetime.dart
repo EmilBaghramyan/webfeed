@@ -237,7 +237,7 @@ DateTime? getUTCDateWithoutAbbr(String dateString) {
   }
   final localDate = DateFormat(rfc822DatePattern).parse(dateString).toLocal();
 
-  return DateTime.parse('$localDate${timeOffset ?? ""}');
+  return DateTime.parse('$localDate${timeOffset}');
 }
 
 DateTime? _parseRfc822DateTime(String dateString) {
