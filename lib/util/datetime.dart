@@ -46,7 +46,7 @@ const abbr = {
   "CLST": "-03:00",
   "CLT": "-04:00",
   "COT": "-05:00",
-  "CST": "-05:00",
+  "CST": "-06:00",
   "CVT": "-01:00",
   "CXT": "+07:00",
   "ChST": "+10:00",
@@ -223,7 +223,9 @@ const abbr = {
 
 DateTime? parseDateTime(dateString) {
   if (dateString == null) return null;
-  return getUTCDateWithoutAbbr(dateString) ?? _parseRfc822DateTime(dateString) ?? _parseIso8601DateTime(dateString);
+  return getUTCDateWithoutAbbr(dateString) ??
+      _parseRfc822DateTime(dateString) ??
+      _parseIso8601DateTime(dateString);
 }
 
 DateTime? getUTCDateWithoutAbbr(String dateString) {
@@ -243,7 +245,10 @@ DateTime? getUTCDateWithoutAbbr(String dateString) {
 DateTime? _parseRfc822DateTime(String dateString) {
   try {
     final num? length = dateString.length.clamp(0, rfc822DatePattern.length);
-    final trimmedPattern = rfc822DatePattern.substring(0, length as int?); //Some feeds use a shortened RFC 822 date, e.g. 'Tue, 04 Aug 2020'
+    final trimmedPattern = rfc822DatePattern.substring(
+        0,
+        length
+            as int?); //Some feeds use a shortened RFC 822 date, e.g. 'Tue, 04 Aug 2020'
     final format = DateFormat(trimmedPattern, 'en_US');
     return format.parse(dateString);
   } on FormatException {
