@@ -73,7 +73,8 @@ class RssItem {
           .firstOrNull,
       dc: DublinCore.parse(element),
       itunes: Itunes.parse(element),
-      timezone: getTimezoneFromDateString(element.findElements('pubDate').firstOrNull?.text));
+      timezone: getTimezoneFromDateString(
+          element.findElements('pubDate').firstOrNull?.text),
     );
   }
 }
