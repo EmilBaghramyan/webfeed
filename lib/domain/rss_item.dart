@@ -25,6 +25,7 @@ class RssItem {
   final RssEnclosure? enclosure;
   final DublinCore? dc;
   final Itunes? itunes;
+  final String? timezone;
 
   RssItem({
     this.title,
@@ -41,6 +42,7 @@ class RssItem {
     this.enclosure,
     this.dc,
     this.itunes,
+    this.timezone,
   });
 
   factory RssItem.parse(XmlElement element) {
@@ -71,6 +73,7 @@ class RssItem {
           .firstOrNull,
       dc: DublinCore.parse(element),
       itunes: Itunes.parse(element),
+      timezone: getTimezoneFromDateString(element.findElements('pubDate').firstOrNull?.text));
     );
   }
 }

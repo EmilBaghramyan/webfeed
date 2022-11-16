@@ -221,6 +221,15 @@ const abbr = {
   "Z": "+0000",
 };
 
+String getTimezoneFromDateString(String? dateString) {
+  if (dateString == null) return '';
+  print(dateString);
+  String timezone = dateString.split(' ').last;
+  if (timezone == '+0000') timezone = 'UTC';
+  print(timezone);
+  return timezone;
+}
+
 DateTime? parseDateTime(dateString) {
   if (dateString == null) return null;
   return getUTCDateWithoutAbbr(dateString) ??
