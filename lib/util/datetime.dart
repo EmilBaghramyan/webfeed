@@ -223,10 +223,8 @@ const abbr = {
 
 String getTimezoneFromDateString(String? dateString) {
   if (dateString == null) return '';
-  print(dateString);
   String timezone = dateString.split(' ').last;
   if (timezone == '+0000') timezone = 'UTC';
-  print(timezone);
   return timezone;
 }
 
